@@ -19,7 +19,7 @@ function(input, output) {
     if (input$zodiac != "All") {
       data <- data[data$zodiac == input$zodiac,]
     }
-    data[c("title", "description", "number_episodes", "avg_duration_min", "explicit", "zodiac")]
+    data[c("title", "description", "number_episodes", "avg_duration_min", "zodiac")]
     
   }))
   
