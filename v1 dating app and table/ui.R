@@ -10,7 +10,7 @@ library(DT)
 library(rsconnect)
 
 # PUT WHICHEVER PODSEARCH CSV YOU WANT INTO HERE
-podsearch_df <- read_csv("data/podsearch_df_03_24_2023.csv")
+podsearch_df <- read_csv("data/podsearch_df_03_30_2023.csv")
 
 bachelor_num <- sort(sample.int(length(podsearch_df), 1)) # for when they hit the randomize button. would need to be len(sorted df )  tho
 print(bachelor_num)
@@ -88,7 +88,7 @@ fluidPage(
            selectInput("zodiac",
                        "Zodiac:",
                        c("All",
-                         c("Aries", "Taurus", "Gemini", "Cancer", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces")))),
+                         c("Aries", "Taurus", "Gemini", "Cancer", "Virgo", "Leo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces")))),
     mainPanel(column(12, 
       (tabsetPanel(type="tabs",
                   tabPanel("Dating", 
@@ -97,8 +97,8 @@ fluidPage(
                            h3(),
                            h3(podsearch_df$title[bachelor_num]),
                            conditionalPanel(
-                             condition = "input.zodiac == 'Scorpio'",
-                             img(src="podcast_holder_in.png")
+                             condition = "input.zodiac == 'Leo'",
+                             img(src="Leo.png")
                            ),
                            img(src=paste(podsearch_df$zodiac[bachelor_num], ".png", sep = "")), # added conditional for zodiac image
                            h5(podsearch_df$description[bachelor_num]),
