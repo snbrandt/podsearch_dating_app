@@ -42,6 +42,7 @@ fluidPage(
                             }
                             h5 {
                             text-align: left;
+                            font-size: 1.15em;
                             }
                             #pod-link {
                             text-align: center;
@@ -113,12 +114,15 @@ fluidPage(
                              h5("Explicit:", podsearch_df$explicit[bachelor_num])
 
                              ),
-                           column(12,
-                                  h5("Show Link:",tags$a(href= podsearch_df$show_link[bachelor_num], "CLICK HERE!"), id = "pod-link")),
+                           column(12
+                                  #, h5("Show Link:",tags$a(href= podsearch_df$show_link[bachelor_num], "CLICK HERE!"), id = "pod-link")
+                                  ),
                            column(6,
-                                  actionButton("goButton", "", icon = icon("times"))),
+                                  actionButton("shuffleButton", "", icon = icon("random"))),
                            column(6,
-                                  actionButton("skipButton", "", icon = icon("check"))))# end of baby column 2
+                                  actionButton("podlinkButton", "", icon = icon("podcast"),
+                                               onclick = paste0("window.open('", podsearch_df$show_link[bachelor_num], "', '_blank')") # added link functionality
+                                               )))# end of baby column 2
                            ), # end of dating tab
         
                   
