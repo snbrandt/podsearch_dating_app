@@ -97,11 +97,8 @@ fluidPage(
                            h4("Meet your match!"),
                            h3(),
                            h3(podsearch_df$title[bachelor_num]),
-                           conditionalPanel(
-                             condition = "input.zodiac == 'Leo'",
-                             img(src="Leo.png")
-                           ),
                            img(src=paste(podsearch_df$zodiac[bachelor_num], ".png", sep = "")), # added conditional for zodiac image
+                           imageOutput(paste0(podsearch_df$zodiac[bachelor_num], ".png")),
                            h5(podsearch_df$description[bachelor_num]),
                            column(6,
                              h5("Number of Episodes:",podsearch_df$number_episodes[bachelor_num], "episodes"),

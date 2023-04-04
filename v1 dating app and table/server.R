@@ -23,4 +23,11 @@ function(input, output) {
     
   }))
   
+  
+  output$preImage <- renderImage({
+    filename <- paste0(input$zodiac, ".png")
+    
+    list(src = filename,
+         alt = paste(input$zodiac, "image"))
+  })
 }
