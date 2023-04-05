@@ -6,11 +6,14 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
+library(bslib)
+library(spsComps)
+
 library(DT)
 library(rsconnect)
 
 # PUT WHICHEVER PODSEARCH CSV YOU WANT INTO HERE
-podsearch_df <- read_csv("data/podsearch_df_03_30_2023.csv")
+podsearch_df <- read_csv("data/podsearch_df_04_04_2023_v2.csv")
 
 bachelor_num <- sort(sample.int(length(podsearch_df), 1)) # for when they hit the randomize button. would need to be len(sorted df )  tho
 print(bachelor_num)
@@ -47,7 +50,7 @@ fluidPage(
                             #pod-link {
                             text-align: center;
                             }
-                            .btn {
+                            .btn, button {
                             display: block;
                             margin: 20px auto;
                             height: 50px;
@@ -98,7 +101,6 @@ fluidPage(
                            h3(),
                            h3(podsearch_df$title[bachelor_num]),
                            img(src=paste(podsearch_df$zodiac[bachelor_num], ".png", sep = "")), # added conditional for zodiac image
-                           imageOutput(paste0(podsearch_df$zodiac[bachelor_num], ".png")),
                            h5(podsearch_df$description[bachelor_num]),
                            column(6,
                              h5("Number of Episodes:",podsearch_df$number_episodes[bachelor_num], "episodes"),
@@ -129,7 +131,14 @@ fluidPage(
                            h2(""),
                            DT::dataTableOutput("table"))
                   
-                  )))))))
+                  ),
+                  
+                  tabPanel("Work",
+                           box(
+                             htmlOutput("filtered_podcast")
+                           ))
+                  
+                  ))))))
 
 
 
