@@ -6,14 +6,13 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
-library(bslib)
-library(spsComps)
+library(shinyjs)
 
 library(DT)
 library(rsconnect)
 
 # PUT WHICHEVER PODSEARCH CSV YOU WANT INTO HERE
-podsearch_df <- read_csv("data/podsearch_df_04_04_2023_v2.csv")
+podsearch_df <- read_csv("data/podsearch_df_04_06_2023_v1.csv")
 
 bachelor_num <- sort(sample.int(length(podsearch_df), 1)) # for when they hit the randomize button. would need to be len(sorted df )  tho
 print(bachelor_num)
@@ -73,17 +72,13 @@ fluidPage(
                        "Select range of episodses:",
                        min = 1, max = 160,
                        value = c(1, 160)),
-           selectInput("number_episodes",
-                       "Number of Episodes (minimum):",
-                       c("All",
-                         c("5", "10", "20", "40", "80", "160"))),
            selectInput("explicit",
                        "Explicit:",
-                       c("All",
+                       c("None",
                          c("explicit", "not explicit"))),
            selectInput("zodiac",
                        "Zodiac:",
-                       c("All",
+                       c("None",
                          c("Aries", "Taurus", "Gemini", "Cancer", "Virgo", "Leo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces")))),
     mainPanel(column(12, 
       (tabsetPanel(type="tabs",

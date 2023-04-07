@@ -22,11 +22,11 @@ function(input, output) {
   
   output$filtered_podcast <- renderText({
     
-    if(input$zodiac == "All" | input$explicit == "All") {
+    if(input$zodiac == "None" | input$explicit == "None" | input$number_episodes_slider[1] == 1 & input$number_episodes_slider[2] == 160) {
       paste(h2("Use filters to get your match!"))
     } else{
     filtered_df <- podsearch_df %>% 
-      filter(zodiac %in% input$zodiac & avg_duration_min > input$number_episodes_slider[1] & avg_duration_min <= input$number_episodes_slider[2] & explicit %in% input$explicit)
+      filter(zodiac %in% input$zodiac & number_episodes > input$number_episodes_slider[1] & number_episodes <= input$number_episodes_slider[2] & explicit %in% input$explicit)
     
     pod_match <- sample_n(filtered_df, 1)
     
@@ -58,8 +58,6 @@ function(input, output) {
     }
     
   })
-  
-
   
   output$zodiac_image <- renderImage({
     if(input$zodiac != "All"){
